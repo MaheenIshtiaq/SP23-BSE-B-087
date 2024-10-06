@@ -1,0 +1,109 @@
+body {
+    background-image: url('https://etimg.etb2bimg.com/photo/111013375.cms');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    font-family: 'Roboto', sans-serif; /* Use the Roboto font */
+    color: #333;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+    margin: 0;
+}
+
+
+form {
+    max-width: 600px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 30px;
+    background-color: rgba(255, 255, 255, 0.95);
+    border-radius: 10px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(10px);
+    border: 1px solid #ddd;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+form:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 50px rgba(0, 0, 0, 0.3);
+}
+
+
+h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 2em;
+    color: #005EB8; 
+}
+
+
+input[type="text"], 
+input[type="email"], 
+input[type="address"], 
+input[type="city"] {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    transition: border-color 0.3s;
+}
+
+
+input:focus {
+    border-color: #005EB8;
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 94, 184, 0.5); 
+}
+
+
+.error {
+    color: red;
+    font-size: 0.9em;
+    margin-top: -8px;
+    margin-bottom: 10px;
+}
+
+button {
+    width: 100%;
+    padding: 12px;
+    background-color: #005EB8;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1.1em;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+
+button:hover {
+    background-color: #004080; 
+    transform: translateY(-2px);
+}
+
+
+.logo {
+    display: block;
+    margin: 0 auto 20px;
+    max-width: 200px; 
+}
+
+@media (max-width: 600px) {
+    form {
+        padding: 20px;
+    }
+
+    h2 {
+        font-size: 1.5em;
+    }
+
+    button {
+        font-size: 1em;
+    }
+}
