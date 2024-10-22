@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maheen Ishtiaq - Artistic CV</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Additional CSS for the introduction box */
+        .introduction-box {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            background-color: rgba(255, 255, 255, 0.9);
+            border: 1px solid #ccc;
+            padding: 10px;
+            border-radius: 5px;
+            display: none; /* Initially hidden */
+            z-index: 1000; /* Make sure it's above other content */
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Main Container -->
+    <div class="cv-container">
+
+        <!-- Sidebar for Profile Picture and Contact Information -->
+        <div class="sidebar">
+            <!-- Profile Picture -->
+            <div class="profile-picture" id="profilePicContainer">
+                <img id="profilePic" src="https://i.pinimg.com/enabled_hi/236x/2e/3e/fd/2e3efdc0486a8858f9e0471eee3f68e5.jpg" alt="Profile Picture">
+            </div>
+
+            <!-- Contact Information -->
+            <div class="contact-section">
+                <h2>Contact</h2>
+                <p><strong>Phone:</strong> +92 300 1234567</p>
+                <p><strong>Email:</strong> maheen.ishtiaq@example.com</p>
+                <p><strong>Address:</strong> Lahore, Pakistan</p>
+            </div>
+
+            <!-- Education Section -->
+            <div class="education-section">
+                <h2>Education</h2>
+                <p><strong>B.Sc. in Software Engineering</strong><br>COMSATS University, Lahore Campus<br>4th Semester</p>
+            </div>
+
+            <!-- Skills Section -->
+            <div class="skills-section">
+                <h2>Skills</h2>
+                <div class="skill">
+                    <p>HTML/CSS <span class="percentage">90%</span></p>
+                    <div class="progress-bar"><div class="progress" style="width: 90%;"></div></div>
+                </div>
+                <div class="skill">
+                    <p>JavaScript <span class="percentage">80%</span></p>
+                    <div class="progress-bar"><div class="progress" style="width: 80%;"></div></div>
+                </div>
+                <div class="skill">
+                    <p>React.js <span class="percentage">75%</span></p>
+                    <div class="progress-bar"><div class="progress" style="width: 75%;"></div></div>
+                </div>
+                <div class="skill">
+                    <p>UI/UX Design <span class="percentage">85%</span></p>
+                    <div class="progress-bar"><div class="progress" style="width: 85%;"></div></div>
+                </div>
+                <div class="skill">
+                    <p>Figma, Adobe XD <span class="percentage">70%</span></p>
+                    <div class="progress-bar"><div class="progress" style="width: 70%;"></div></div>
+                </div>
+            </div>
+
+            <!-- Expertise Section -->
+            <div class="expertise-section">
+                <h2>Expertise</h2>
+                <ul>
+                    <li>Responsive Web Design</li>
+                    <li>Front-end Development</li>
+                    <li>Wireframing & Prototyping</li>
+                    <li>Agile Methodologies</li>
+                    <li>User Research & Testing</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Main Content Area -->
+        <div class="main-content">
+
+            <!-- Header with Name & Role -->
+            <header>
+                <h1>Maheen Ishtiaq</h1>
+                <p>Web Developer & UI/UX Designer</p>
+            </header>
+
+            <!-- About Me Section -->
+            <section class="about-section">
+                <h2>About Me</h2>
+                <p>I am a dedicated web developer with a passion for crafting user-centric designs and building responsive, visually appealing websites. My goal is to blend technical expertise with creative problem-solving to deliver high-quality digital experiences.</p>
+            </section>
+
+            <!-- Experience Section -->
+            <section class="experience-section">
+                <h2>Work Experience</h2>
+                <div class="experience-item">
+                    <h3>Front-End Developer</h3>
+                    <p><strong>Creative Solutions</strong><br>2022 - Present</p>
+                    <ul>
+                        <li>Developed responsive web applications using React and Bootstrap.</li>
+                        <li>Collaborated closely with UI/UX designers to implement intuitive interfaces.</li>
+                        <li>Optimized web applications for maximum speed and scalability.</li>
+                    </ul>
+                </div>
+                <div class="experience-item">
+                    <h3>UI/UX Designer</h3>
+                    <p><strong>Pixel Perfection</strong><br>2020 - 2022</p>
+                    <ul>
+                        <li>Designed and developed modern web interfaces using Figma and Adobe XD.</li>
+                        <li>Led the redesign of high-traffic websites, resulting in a 20% increase in user engagement.</li>
+                        <li>Worked cross-functionally with development teams to ensure design consistency.</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Leadership Section -->
+            <section class="leadership-section">
+                <h2>Leadership & Activities</h2>
+                <ul>
+                    <li>President of the Tech Society at COMSATS University (2019-2020)</li>
+                    <li>Organized and led hackathons, coding bootcamps, and design workshops.</li>
+                    <li>Mentored junior students in web development and UI/UX design practices.</li>
+                </ul>
+            </section>
+
+            <!-- Volunteering Section -->
+            <section class="volunteering-section">
+                <h2>Volunteering</h2>
+                <ul>
+                    <li>Volunteer Web Designer for XYZ Non-Profit</li>
+                    <li>Organized coding sessions for underprivileged students in Lahore.</li>
+                </ul>
+            </section>
+
+            <!-- Projects Section -->
+            <section class="projects-section">
+                <h2>Projects</h2>
+                <div class="project-item">
+                    <h3>Portfolio Website</h3>
+                    <p>Developed a personal portfolio website using HTML, CSS, and JavaScript to showcase my design and development projects.</p>
+                </div>
+                <div class="project-item">
+                    <h3>E-commerce UI Design</h3>
+                    <p>Designed a modern e-commerce interface using Figma and Adobe XD, focusing on user engagement and seamless shopping experiences.</p>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <!-- Introduction Box for Hover Effect -->
+    <div id="introduction" class="introduction-box">
+        <p>I am a passionate web developer and UI/UX designer dedicated to creating user-friendly experiences and beautiful interfaces.</p>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

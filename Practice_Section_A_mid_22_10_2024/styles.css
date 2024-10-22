@@ -1,0 +1,285 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    transition: all 0.3s ease-in-out;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #F9F9F9;
+}
+
+.introduction-box {
+    position: fixed;
+    top: 20px; 
+    right: 20px; 
+    background-color: rgba(255, 255, 255, 0.9);
+    border: 1px solid #4DB6AC;
+    border-radius: 10px;
+    padding: 15px;
+    display: none; 
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    z-index: 100; 
+}
+
+
+.cv-container {
+    display: flex;
+    width: 80%;
+    max-width: 1200px;
+    margin: 30px auto;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+.sidebar {
+    background-color: #2E3440;
+    color: #FFFFFF;
+    width: 35%;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border-right: 3px solid #4DB6AC;
+}
+
+.sidebar:hover {
+    background-color: #3A4150;
+}
+
+.profile-picture {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.profile-picture img {
+    width: 80%;
+    max-width: 150px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.profile-picture img:hover {
+    transform: scale(1.1);
+}
+
+.contact-section h2,
+.education-section h2,
+.skills-section h2,
+.expertise-section h2 {
+    font-size: 20px;
+    text-transform: uppercase;
+    color: #FFFFFF;
+    background-color: #4DB6AC;
+    padding: 10px;
+    margin-bottom: 15px;
+    text-align: center;
+    letter-spacing: 1px;
+}
+
+.contact-section p,
+.education-section p,
+.skills-section ul,
+.expertise-section ul {
+    font-size: 16px;
+    color: #f9f9f9;
+}
+
+.skills-section ul,
+.expertise-section ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.skills-section ul li,
+.expertise-section ul li {
+    margin-bottom: 10px;
+}
+
+.main-content {
+    padding: 30px;
+    width: 65%;
+    background-color: #F5F5DC;
+    border-radius: 10px;
+}
+
+header h1 {
+    font-size: 40px;
+    font-weight: bold;
+    color: #2E3440;
+    position: relative;
+    text-align: center;
+}
+
+header h1::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 5px;
+    background-color: #F9B3A4;
+}
+
+header p {
+    font-size: 24px;
+    color: #555;
+    margin-top: 10px;
+    text-align: center;
+}
+
+section {
+    margin-bottom: 30px;
+}
+
+section h2 {
+    font-size: 26px;
+    color: #4DB6AC;
+    border-bottom: 3px solid #F9B3A4;
+    padding-bottom: 5px;
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+section p,
+section ul {
+    font-size: 18px;
+    color: #555;
+}
+
+section ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+section ul li {
+    margin-bottom: 15px;
+    padding-left: 25px;
+    position: relative;
+    line-height: 1.6;
+}
+
+section ul li::before {
+    content: "•";
+    position: absolute;
+    left: 0;
+    top: 5px;
+    font-size: 18px;
+    color: #4DB6AC;
+}
+
+.project-item {
+    padding: 15px;
+    background-color: #FFFFFF;
+    border: 1px solid #DDD;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.project-item:hover {
+    background-color: #F9B3A4;
+    color: white;
+    border-color: #4DB6AC;
+}
+
+.sidebar h2:hover {
+    background-color: #4DB6AC;
+    color: #FFFFFF;
+    cursor: pointer;
+}
+
+@media (max-width: 768px) {
+    .cv-container {
+        flex-direction: column;
+        width: 95%;
+    }
+
+    .sidebar, .main-content {
+        width: 100%;
+        border-right: none;
+    }
+
+    .profile-picture img {
+        width: 90%;
+        max-width: 120px;
+    }
+
+    header h1 {
+        font-size: 32px;
+    }
+
+    section h2 {
+        font-size: 24px;
+    }
+
+    section p,
+    section ul {
+        font-size: 16px;
+    }
+}
+
+.sidebar > div {
+    margin-bottom: 20px;
+}
+
+.sidebar h2:hover {
+    background-color: #4DB6AC;
+    color: #FFFFFF;
+    cursor: pointer;
+}
+
+.skills-section .skill {
+    margin-bottom: 15px;
+}
+
+.skills-section p {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 16px;
+    color: #f9f9f9;
+}
+
+.progress-bar {
+    background-color: #e0e0e0;
+    border-radius: 5px;
+    height: 10px;
+    overflow: hidden;
+    margin-top: 5px;
+}
+
+.progress {
+    background-color: #4DB6AC;
+    height: 100%;
+    transition: width 0.5s ease;
+}
+
+.contact-section p,
+.education-section p,
+.expertise-section ul {
+    font-size: 16px;
+    color: #f9f9f9;
+}
+
+.contact-section p {
+    margin-bottom: 10px;
+}
+
+.education-section p,
+.expertise-section ul li {
+    margin-bottom: 10px;
+}
+
+.sidebar div {
+    padding: 15px;
+    background-color: rgba(46, 52, 64, 0.8);
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.sidebar div:hover {
+    background-color: rgba(77, 182, 172, 0.9);
+}
