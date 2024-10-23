@@ -1,0 +1,2 @@
+Project 1: Web Layout Design
+A clean, responsive webpage design using HTML and CSS. The project emphasized on creating mobile-first, user-friendly layouts.

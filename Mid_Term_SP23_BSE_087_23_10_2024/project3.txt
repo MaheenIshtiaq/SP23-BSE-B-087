@@ -1,0 +1,2 @@
+Project 3: E-commerce Website
+Description: This project is a dynamic e-commerce website designed to provide users with an engaging shopping experience. It is built using HTML, CSS, and JavaScript, focusing on both aesthetic appeal and functional performance
