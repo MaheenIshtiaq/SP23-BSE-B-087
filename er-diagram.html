@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ER Diagram - Motor Vehicle Department</title>
+    <link rel="stylesheet" href="er-diagram.css">
+</head>
+<body>
+
+    <div class="er-diagram">
+        <!-- Entities -->
+        <div class="entity" id="branch">
+            <div class="entity-title">Branch</div>
+            <div class="attribute">(PK) Branch_ID</div>
+            <div class="attribute">Location</div>
+        </div>
+
+        <div class="entity" id="employee">
+            <div class="entity-title">Employee</div>
+            <div class="attribute">(PK) Emp_ID</div>
+            <div class="attribute">Name</div>
+            <div class="attribute">(FK) Branch_ID</div>
+        </div>
+
+        <div class="entity" id="applicant">
+            <div class="entity-title">Applicant</div>
+            <div class="attribute">(PK) Applicant_ID</div>
+            <div class="attribute">Name</div>
+            <div class="attribute">Address</div>
+        </div>
+
+        <div class="entity" id="learner-permit">
+            <div class="entity-title">Learner Permit</div>
+            <div class="attribute">(PK) Permit_ID</div>
+            <div class="attribute">Issued Date</div>
+            <div class="attribute">Expiry Date</div>
+            <div class="attribute">(FK) Applicant_ID</div>
+        </div>
+
+        <div class="entity" id="driving-license">
+            <div class="entity-title">Driving License</div>
+            <div class="attribute">(PK) License_ID</div>
+            <div class="attribute">Issued Date</div>
+            <div class="attribute">(FK) Applicant_ID</div>
+            <div class="attribute">Completed Education</div>
+        </div>
+
+        <div class="entity" id="test-conduct">
+            <div class="entity-title">Test Conduct</div>
+            <div class="attribute">(PK) Test_ID</div>
+            <div class="attribute">Date</div>
+            <div class="attribute">Result</div>
+            <div class="attribute">(FK) Applicant_ID</div>
+            <div class="attribute">(FK) Branch_ID</div>
+        </div>
+
+        <!-- Relationships -->
+        <div class="relationship" id="has-permit">Has</div>
+        <div class="relationship" id="takes-test">Takes</div>
+        <div class="relationship" id="grants-license">Grants</div>
+        <div class="relationship" id="works-in">Works In</div>
+        <div class="relationship" id="conducts-test">Conducts</div>
+
+        <!-- Cardinality Markers -->
+        <div class="cardinality" id="branch-employee">1 | *</div>
+        <div class="cardinality" id="applicant-permit">1 | 1</div>
+        <div class="cardinality" id="permit-license">1 | 1</div>
+        <div class="cardinality" id="applicant-test">1 | *</div>
+        <div class="cardinality" id="branch-test">1 | *</div>
+    </div>
+
+    <!-- Connecting Lines (use SVG for flexibility) -->
+    <svg class="connectors">
+        <!-- Connect Applicant to Permit -->
+        <line x1="200" y1="150" x2="300" y2="300" stroke="black" />
+        <!-- Connect Branch to Employee -->
+        <line x1="500" y1="200" x2="600" y2="100" stroke="black" />
+        <!-- More lines as needed... -->
+    </svg>
+
+</body>
+</html>
