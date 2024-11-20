@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Song and Album Management</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+    <h1>Song and Album Management</h1>
+
+    <form id="songForm">
+        <label for="songName">Song Name:</label>
+        <input type="text" id="songName" required><br><br>
+
+        <label for="albumTitle">Album Title:</label>
+        <input type="text" id="albumTitle" required><br><br>
+
+        <label for="albumCover">Album Cover (Image):</label>
+        <input type="file" id="albumCover" accept="image/*"><br><br>
+
+        <label for="lyrics">Lyrics:</label>
+        <textarea id="lyrics" rows="5" required></textarea><br><br>
+
+        <button type="submit">Add Song</button>
+    </form>
+
+    <h2>Existing Songs</h2>
+    <ul id="songList"></ul>
+
+    <script src="/js/script.js"></script>
+</body>
+</html>

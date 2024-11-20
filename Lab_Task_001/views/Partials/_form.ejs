@@ -1,0 +1,32 @@
+<form action="/submit-form" method="POST" id="adminForm">
+    <div>
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required><br><br>
+    </div>
+
+    <div>
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required><br><br>
+    </div>
+
+    <div>
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required><br><br>
+    </div>
+
+    <div>
+        <label for="age">Age:</label>
+        <input type="number" id="age" name="age" min="18" required><br><br>
+    </div>
+
+    <div>
+        <label for="gender">Gender:</label>
+        <select id="gender" name="gender" required>
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+            <option value="other">Other</option>
+        </select><br><br>
+    </div>
+
+    <button type="submit">Submit</button>
+</form>
