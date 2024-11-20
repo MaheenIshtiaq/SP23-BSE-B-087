@@ -1,0 +1,8 @@
+node_modules/
+*.ejs
+*.css
+*.html
+package-lock.json
+package.json
+server.js
+
