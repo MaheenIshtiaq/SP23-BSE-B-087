@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Product Listing</title>
+  <link rel="stylesheet" href="F:\repo_001\SP23-BSE-B-087\SP23-BSE-B-087\Semester_Project_sp23_bse_087\public\css\styles_user.css">
+</head>
+<body>
+  <header>
+    <h1>Our Products</h1>
+  </header>
+
+  <!-- Main Container -->
+  <div id="main-container">
+    <!-- Product Filters & Search -->
+    <div id="filters">
+      <div class="filter-header">
+        <h3>Filter Products</h3>
+      </div>
+      <div class="search-bar-container">
+        <input type="text" id="searchInput" placeholder="Search for a product" oninput="filterProducts()">
+        <select id="priceFilter" onchange="sortProducts()">
+          <option value="low-to-high">Price: Low to High</option>
+          <option value="high-to-low">Price: High to Low</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Product Listing Section -->
+    <div id="product-list"></div>
+    
+    <!-- Pagination Controls -->
+    <div id="pagination">
+      <button onclick="changePage('prev')">Previous</button>
+      <span id="page-info">Page 1</span>
+      <button onclick="changePage('next')">Next</button>
+    </div>
+  </div>
+
+  <!-- Cart Panel Section (Right Panel) -->
+  <div id="cart-panel">
+    <h2>Your Cart</h2>
+    <div id="cart-items"></div>
+    <p class="cart-total">Total: $0</p>
+  </div>
+
+  <!-- Sign-In/Sign-Up Form -->
+  <div id="auth-form" style="display:none;">
+    <h2>Sign In or Register</h2>
+    <form id="user-form">
+      <input type="text" id="username" placeholder="Enter Username" required><br>
+      <input type="password" id="password" placeholder="Enter Password" required><br>
+      <button type="submit">Submit</button>
+    </form>
+    <button onclick="toggleAuthForm('register')">Don't have an account? Register</button>
+  </div>
+
+
+
+  <script>
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+    let currentPage = 1;
+    const productsPerPage = 4; // Show 4 products per page
+
+    // Check if user is signed in
+    const isUserSignedIn = JSON.parse(localStorage.getItem('user')) !== null;
+
+    function updateCart() {
+      const cartItems = document.getElementById('cart-items');
+      const cartTotal = document.querySelector('.cart-total');
+      cartItems.innerHTML = '';
+      let total = 0;
+
+      cart.forEach((item, index) => {
+        total += item.price * item.quantity;
+        const cartItemDiv = document.createElement('div');
+        cartItemDiv.classList.add('cart-item');
+        cartItemDiv.innerHTML = ` 
+          <div class="item-name">${item.name}</div>
+          <div class="item-details">Quantity: ${item.quantity}</div>
+          <div class="item-price">$${(item.price * item.quantity).toFixed(2)}</div>
+          <button onclick="removeFromCart(${index})">Remove</button>
+        `;
+        cartItems.appendChild(cartItemDiv);
+      });
+
+      cartTotal.textContent = `Total: $${total.toFixed(2)}`;
+      localStorage.setItem('cart', JSON.stringify(cart));
+    }
+
+    window.onload = function() {
+      const products = JSON.parse(localStorage.getItem('products')) || [];
+      if (products.length === 0) {
+        document.getElementById('product-list').innerHTML = '<p>No products available</p>';
+      } else {
+        displayProducts(products);
+      }
+
+      // If not signed in, show the sign-in/register prompt
+      if (!isUserSignedIn) {
+        document.getElementById('auth-form').style.display = 'block';
+      } else {
+        document.getElementById('auth-form').style.display = 'none';
+      }
+    };
+
+    function displayProducts(products) {
+      const productList = document.getElementById('product-list');
+      productList.innerHTML = '';
+
+      const startIndex = (currentPage - 1) * productsPerPage;
+      const endIndex = startIndex + productsPerPage;
+      const productsToDisplay = products.slice(startIndex, endIndex);
+
+      productsToDisplay.forEach(product => {
+        const productDiv = document.createElement('div');
+        productDiv.classList.add('product-item');
+        productDiv.innerHTML = `
+          <img src="${product.image}" alt="Product Image">
+          <h3>${product.name}</h3>
+          <p>${product.description}</p>
+          <p class="price">$${product.price}</p>
+          <p class="quantity">Available: ${product.quantity}</p>
+          <select class="quantity-selector">
+            ${Array.from({ length: product.quantity }, (_, i) => i + 1).map(q => `<option value="${q}">${q}</option>`).join('')}
+          </select>
+          <button onclick="addToCart('${product.name}', ${product.price}, '${product.image}', ${product.quantity})">Add to Cart</button>
+        `;
+        productList.appendChild(productDiv);
+      });
+
+      // Update page info
+      document.getElementById('page-info').textContent = `Page ${currentPage}`;
+    }
+
+    function addToCart(name, price, image, quantity) {
+      if (!isUserSignedIn) {
+        alert('Please sign in or register before adding to the cart.');
+        return;
+      }
+
+      const quantitySelector = document.querySelector('select.quantity-selector');
+      const selectedQuantity = parseInt(quantitySelector.value);
+
+      if (isNaN(selectedQuantity) || selectedQuantity <= 0) return;
+
+      const existingProduct = cart.find(item => item.name === name);
+
+      if (existingProduct) {
+        existingProduct.quantity += selectedQuantity;
+      } else {
+        cart.push({ name, price, image, quantity: selectedQuantity });
+      }
+
+      updateCart();
+    }
+
+    function removeFromCart(index) {
+      cart.splice(index, 1);
+      updateCart();
+    }
+
+    function filterProducts() {
+      const searchQuery = document.getElementById('searchInput').value.toLowerCase();
+      const filteredProducts = JSON.parse(localStorage.getItem('products')).filter(product => product.name.toLowerCase().includes(searchQuery));
+      displayProducts(filteredProducts);
+    }
+
+    function sortProducts() {
+      const priceOrder = document.getElementById('priceFilter').value;
+      let products = JSON.parse(localStorage.getItem('products'));
+
+      if (priceOrder === 'low-to-high') {
+        products.sort((a, b) => a.price - b.price);
+      } else {
+        products.sort((a, b) => b.price - a.price);
+      }
+
+      displayProducts(products);
+    }
+
+    // Pagination functionality
+    function changePage(direction) {
+      const products = JSON.parse(localStorage.getItem('products')) || [];
+      const totalPages = Math.ceil(products.length / productsPerPage);
+
+      if (direction === 'prev' && currentPage > 1) {
+        currentPage--;
+      } else if (direction === 'next' && currentPage < totalPages) {
+        currentPage++;
+      }
+
+      displayProducts(products);
+    }
+
+    // Handle sign-in or registration
+    document.getElementById('user-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const username = document.getElementById('username').value;
+      const password = document.getElementById('password').value;
+
+      const user = { username, password };
+      localStorage.setItem('user', JSON.stringify(user));
+
+      alert('Sign-in successful! You can now add items to your cart.');
+      document.getElementById('auth-form').style.display = 'none';
+    });
+
+    function toggleAuthForm(action) {
+      if (action === 'register') {
+        alert('Registration functionality can be implemented here.');
+      }
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,101 @@
+/* Basic styling for the product page */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+  }
+  
+  header {
+    background-color: #333;
+    color: white;
+    padding: 10px;
+    text-align: center;
+  }
+  
+  #user-status {
+    display: flex;
+    justify-content: flex-end;
+  }
+  
+  #filters {
+    width: 20%;
+    padding: 20px;
+    background-color: #fff;
+  }
+  
+  #product-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    margin: 20px;
+  }
+  
+  .product-item {
+    background-color: #fff;
+    padding: 20px;
+    margin: 10px;
+    width: 45%;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  #cart-panel {
+    position: fixed;
+    right: 0;
+    top: 0;
+    width: 20%;
+    padding: 20px;
+    background-color: #fff;
+    height: 100%;
+    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  .cart-item {
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+  }
+  
+  .cart-total {
+    font-weight: bold;
+    margin-top: 20px;
+  }
+  
+  .search-bar-container input, select {
+    width: 100%;
+    padding: 8px;
+    margin: 10px 0;
+  }
+  
+  button {
+    padding: 10px;
+    background-color: #333;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background-color: #555;
+  }
+  
+  #auth-form {
+    width: 300px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  #auth-form input {
+    width: 100%;
+    padding: 8px;
+    margin: 10px 0;
+  }
+  
+  #auth-form button {
+    width: 100%;
+    padding: 10px;
+  }
+  
