@@ -31,11 +31,21 @@ const productSchema = new mongoose.Schema({
 });
 
 const orderSchema = new mongoose.Schema({
-  orderId: { type: String, required: true },
-  customer: { type: String, required: true },
-  amount: { type: Number, required: true },
-  status: { type: String, required: true },
+  customerName: { type: String, required: true },  // User's name
+  customerEmail: { type: String, required: true },  // User's email
+  cart: [
+    {
+      productId: { type: mongoose.Schema.Types.ObjectId, ref: 'Product', required: true },
+      productName: { type: String, required: true },
+      quantity: { type: Number, required: true },
+      price: { type: Number, required: true }
+    }
+  ],  // Array to store the cart information (products in the cart)
+  totalBill: { type: Number, required: true },  // Total bill for the order
+  status: { type: String, required: true, default: 'Pending' },  // Status of the order
+  createdAt: { type: Date, default: Date.now }  // Timestamp of when the order was created
 });
+
 
 const Product = mongoose.model('Product', productSchema);
 const Order = mongoose.model('Order', orderSchema);
@@ -159,25 +169,52 @@ app.delete('/api/products/:id', async (req, res) => {
 
 // Add an order
 app.post('/api/orders', async (req, res) => {
+  const { customerName, customerEmail, cart } = req.body;
+
+  // Simple validation
+  if (!customerName || !customerEmail || !Array.isArray(cart) || cart.length === 0) {
+    return res.status(400).json({ error: 'Invalid order data' });
+  }
+
   try {
-    const { orderId, customer, amount, status } = req.body;
-    const order = new Order({ orderId, customer, amount, status });
-    await order.save();
-    res.status(201).json({ message: 'Order added successfully', order });
+    // Calculate total bill
+    let totalBill = 0;
+    for (const item of cart) {
+      totalBill += item.quantity * item.price;
+    }
+
+    // Create the order object
+    const newOrder = new Order({
+      customerName,
+      customerEmail,
+      cart,
+      totalBill,
+      status: 'Pending',  // Initial order status
+    });
+
+    // Save the order to the database
+    await newOrder.save();
+
+    // Respond with the created order
+    res.status(201).json(newOrder);
+
   } catch (error) {
-    res.status(500).json({ message: 'Error adding order', error });
+    console.error('Error placing order:', error);
+    res.status(500).json({ error: 'Internal server error' });
   }
 });
 
 // Get all orders
 app.get('/api/orders', async (req, res) => {
   try {
-    const orders = await Order.find();
-    res.status(200).json(orders);
+    const orders = await Order.find();  // Fetch all orders from the database
+    res.status(200).json(orders);  // Respond with the list of orders
   } catch (error) {
-    res.status(500).json({ message: 'Error fetching orders', error });
+    console.error('Error fetching orders:', error);
+    res.status(500).json({ error: 'Error fetching orders' });
   }
 });
+
 
 // Start the server
 app.listen(PORT, () => {
